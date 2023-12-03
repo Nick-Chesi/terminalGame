@@ -15,10 +15,10 @@ import static org.lwjgl.system.MemoryUtil.*;
 public class Display {
 	 // The window handle
     private long window;
+    
+    private Main main = new Main();
 
     public void run() {
-    	
-    	System.out.println("Launching Terminal Game");
     	
     	// ALL PREMADE NEEDED FOR WINDOW
         init();
@@ -30,7 +30,7 @@ public class Display {
 
         // Terminate GLFW and free the error callback
         glfwTerminate();
-        glfwSetErrorCallback(null).free();
+        glfwSetErrorCallback(null).free(); 
         // ALL PREMADE NEEDED FOR WINDOW
     }
 
@@ -49,10 +49,12 @@ public class Display {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
 
         // Create the window
-        window = glfwCreateWindow(800, 800, "Terminal Game", NULL, NULL);
-        if (window == NULL)
+        // w x h
+        window = glfwCreateWindow(main.settings.getScreenWidth(), main.settings.getScreenHeight(), main.getGameName(), NULL, NULL);
+        
+        if (window == NULL) {
             throw new RuntimeException("Failed to create the GLFW window");
-
+        }
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
         glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
             if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE)
@@ -95,9 +97,9 @@ public class Display {
         // bindings available for use.
         GL.createCapabilities();
 
-        // Set the clear color
+        // Set the black color for the terminal esc main menu
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-       
+        
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
         while ( !glfwWindowShouldClose(window) ) {
