@@ -20,7 +20,8 @@ public class Main {
     public void run() {
     	
     	System.out.println("Launching Terminal Game");
-
+    	
+    	// ALL PREMADE NEEDED FOR WINDOW
         init();
         loop();
 
@@ -31,6 +32,7 @@ public class Main {
         // Terminate GLFW and free the error callback
         glfwTerminate();
         glfwSetErrorCallback(null).free();
+        // ALL PREMADE NEEDED FOR WINDOW
     }
 
     private void init() {
@@ -96,7 +98,7 @@ public class Main {
 
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
+       
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
         while ( !glfwWindowShouldClose(window) ) {
@@ -107,6 +109,8 @@ public class Main {
             // Poll for window events. The key callback above will only be
             // invoked during this call.
             glfwPollEvents();
+            
+            
         }
     }
 
