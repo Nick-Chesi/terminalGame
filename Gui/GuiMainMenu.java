@@ -1,15 +1,19 @@
 package terminalGame.Gui;
 
-public class GuiMainMenu {
-    private String text;
+import terminalGame.Main;
 
-    public GuiMainMenu(String text) {
-        this.text = text;
+public class GuiMainMenu {
+	
+	private Main main = new Main();
+
+    public GuiMainMenu() {
+    	
     }
 
     public void render() {
         // Render the text
         // You'll need to set up text rendering here using STB or a similar library
-        System.out.println(text); // Placeholder for actual rendering code
+        //System.out.println("RENDER"); 
+    	main.textRender.drawString(0, 0, "HAHSAHASHDFHSDHh");
     }
 }

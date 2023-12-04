@@ -1,11 +1,14 @@
 package terminalGame;
 
+import terminalGame.Utils.TextRenderer;
+
 public class Main {
 	
 	private double gameVersion = 0.0;
 	private String gameName = "Epoch";
 	
 	private static Main m = new Main();
+	public TextRenderer textRender = new TextRenderer();
 	public Settings settings = new Settings();
 
 	public static void main(String[] args) {

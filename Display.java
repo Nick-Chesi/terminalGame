@@ -94,7 +94,7 @@ public class Display {
         glfwShowWindow(window);
         
         // Inizialize the new gui call
-        guiMainMenu = new GuiMainMenu("Hello, LWJGL!");
+        guiMainMenu = new GuiMainMenu();
         
     }
 
