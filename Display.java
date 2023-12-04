@@ -4,6 +4,8 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 
+import terminalGame.Gui.GuiMainMenu;
+
 import java.nio.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
@@ -17,6 +19,9 @@ public class Display {
     private long window;
     
     private Main main = new Main();
+    
+    // Create call for guimainmenu
+    private GuiMainMenu guiMainMenu;
 
     public void run() {
     	
@@ -87,31 +92,27 @@ public class Display {
 
         // Make the window visible
         glfwShowWindow(window);
+        
+        // Inizialize the new gui call
+        guiMainMenu = new GuiMainMenu("Hello, LWJGL!");
+        
     }
 
     private void loop() {
-        // This line is critical for LWJGL's interoperation with GLFW's
-        // OpenGL context, or any context that is managed externally.
-        // LWJGL detects the context that is current in the current thread,
-        // creates the GLCapabilities instance and makes the OpenGL
-        // bindings available for use.
         GL.createCapabilities();
-
-        // Set the black color for the terminal esc main menu
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        
-        // Run the rendering loop until the user has attempted to close
-        // the window or has pressed the ESCAPE key.
+        // While the window is not closed do stuff
         while ( !glfwWindowShouldClose(window) ) {
+        	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
             glfwSwapBuffers(window); // swap the color buffers
-
-            // Poll for window events. The key callback above will only be
-            // invoked during this call.
             glfwPollEvents();
             
+            // Render new gui here
+            guiMainMenu.render();
             
         }
+        
+        // Once display is closed game is closed
+        main.debugPrint("Closing Game");
     }
 }

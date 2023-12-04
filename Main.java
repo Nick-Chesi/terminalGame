@@ -5,10 +5,11 @@ public class Main {
 	private double gameVersion = 0.0;
 	private String gameName = "Epoch";
 	
+	private static Main m = new Main();
 	public Settings settings = new Settings();
 
 	public static void main(String[] args) {
-    	System.out.println("Launching Terminal Game");
+		m.debugPrint("Launching Game");
         new Display().run();
     }
 	
@@ -18,6 +19,10 @@ public class Main {
 
 	public String getGameName() {
 		return gameName;
+	}
+	
+	public void debugPrint(String message) {
+		System.out.println("[Epoch DEBUG]: " + message);
 	}
 
 }
